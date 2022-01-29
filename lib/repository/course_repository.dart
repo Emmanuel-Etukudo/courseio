@@ -1,5 +1,7 @@
 
 
+import 'dart:convert';
+
 import 'package:courseio/constants.dart';
 import 'package:courseio/model/course.dart';
 import 'package:courseio/repository/repository.dart';
@@ -18,6 +20,15 @@ class CourseRepository implements Repository{
     if(domainFilter != Constants.allFilter){
       url += ';&filter[domain_ids][]=$domainFilter';
     }
+
+    // parse url to uri
+    final uri = Uri.parse(url);
+    final response = await http.get(uri);
+
+    //convert response to json
+    final apiResponse = json.decode(response.body) as Map<String, dynamic>;
+    print(apiResponse);
+
     return courses;
   }
 
