@@ -23,7 +23,7 @@ class _CoursesPageState extends State<CoursesPage> {
               child: CircularProgressIndicator(),
             );
           }
-          return Text("Courses");
+          return Text(courses.toString());
         });
   }
 }

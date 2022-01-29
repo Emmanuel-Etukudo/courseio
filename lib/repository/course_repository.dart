@@ -27,7 +27,10 @@ class CourseRepository implements Repository{
 
     //convert response to json
     final apiResponse = json.decode(response.body) as Map<String, dynamic>;
-    print(apiResponse);
+    final data = apiResponse['data'] as List;
+    for (final json in data){
+      courses.add(Course.fromJson(json as Map<String, dynamic>));
+    }
 
     return courses;
   }
